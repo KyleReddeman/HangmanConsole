@@ -72,7 +72,8 @@ public class HangmanMain {
       System.out.println("\nThanks for playing!");
    }
    public static List<String> createWordBank() throws FileNotFoundException{
-      Scanner fileInput = new Scanner(new File("wordBank.txt"));
+      System.out.println(File.separator);
+      Scanner fileInput = new Scanner(new File("~/documents/hangman/wordBank.txt"));
       List<String> wordBank = new ArrayList<String>();
       while(fileInput.hasNextLine()) {
          wordBank.add(fileInput.nextLine().trim());
