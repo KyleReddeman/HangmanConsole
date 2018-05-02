@@ -25,7 +25,7 @@ default
 multiple
 project
 retro
-ske
+sky
 page
 fusion
 atomic
