@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class HangmanMain {
-   public static void main(String[] args) throws FileNotFoundException {
+   public static void main(String[] args) throws FileNotFoundException, InterruptedException {
       String word = "";
       boolean userWord = true;
       Scanner input = new Scanner(System.in);
@@ -22,23 +22,30 @@ public class HangmanMain {
 	 word = wordBank.get(random.nextInt(wordBank.size()));
       }
       Board b = new Board(word);
-      int incorrectMax = 7;
+      int incorrectMax = 8;
       int incorrectCount = 0;
       System.out.println(b);
       while(!b.won() && incorrectCount < incorrectMax) {
          System.out.print("Enter Guess: ");
          String s = input.nextLine();
-         b.addLetter(s);
-         if(b.contains(s)) {
- 	    System.out.println("Good guess!");
-         }
+	 if(!b.letterGuessed(s)) {
+            b.addLetter(s);
+            if(b.contains(s)) {
+ 	       System.out.println("Good guess!");
+            }
+            else {
+               System.out.println("NOPE");
+	       incorrectCount++;
+            }
+	 }
          else {
-            System.out.println("NOPE");
-	    incorrectCount++;
-         }
+	    System.out.println("You already guessed that");
+	 }
+         Thread.sleep(450);
+         System.out.println();
 	 System.out.println("Incorrect Guesses:[" + incorrectCount + "/" + incorrectMax + "]");
-         System.out.print(b);
-	 System.out.println(b.usedLetters());
+	 System.out.println("Letters   Guessed: " + b.usedLetters());
+         System.out.println(b);
       }
       if(incorrectCount >= incorrectMax) {
 	 System.out.println("Sorry, you lose!");
@@ -64,7 +71,7 @@ public class HangmanMain {
       }
       System.out.println("\nThanks for playing!");
    }
-   public static List<String> createWordBank() throws FileNotFoundException{
+   public static List<String> createWordBank() throws FileNotFoundException {
       Scanner fileInput = new Scanner(new File("wordBank.txt"));
       List<String> wordBank = new ArrayList<String>();
       while(fileInput.hasNextLine()) {

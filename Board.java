@@ -45,7 +45,7 @@ public class Board {
    }
   
    public boolean letterGuessed(String s) {
-
+      return usedLetters.contains(s.toLowerCase().trim().charAt(0));
    }
 
    public void set(String s) {

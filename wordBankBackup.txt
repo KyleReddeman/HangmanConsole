@@ -1,4 +1,6 @@
-horizon
+chair
+quench
+elephant
 weapon
 camel
 death
