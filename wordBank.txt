@@ -1,3 +1,4 @@
+leather
 depot
 chair
 quench
