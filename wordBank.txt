@@ -1,3 +1,4 @@
+dunce
 leather
 depot
 chair
